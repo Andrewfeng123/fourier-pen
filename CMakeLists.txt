@@ -4,10 +4,22 @@ cmake_minimum_required(VERSION 3.10)
 project(fourier-pen)
 
 # add the executable
-find_package(SDL2 CONFIG REQUIRED)
 add_executable(main src/main.cpp)
 
-target_link_libraries(main PRIVATE SDL2::SDL2 SDL2::SDL2main)
+# add glad library
+add_library("glad" "src/include/glad/glad.c")
+include_directories("src/include")
+
+find_package(SDL2 CONFIG REQUIRED)
+find_package(imgui CONFIG REQUIRED)
+find_package(OpenGL REQUIRED)
+
+target_link_libraries(main PRIVATE 
+    SDL2::SDL2
+    SDL2::SDL2main
+    "glad"
+    imgui::imgui
+    )
 
 # specify the C++ standard
 set(CMAKE_CXX_STANDARD 11)

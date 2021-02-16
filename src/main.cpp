@@ -5,10 +5,15 @@
 #include "imgui_impl_opengl3.h"
 #include "include/glad/glad.h"
 
+#define MAX_X 1
+#define MIN_X 0
+#define MAX_Y 1
+#define MIN_Y 0
+
+bool drawPoints(double x, double y);
+
 const int width = 640;
 const int height = 480;
-
-void FFT();
 
 int main(int argc, char *args[])
 {

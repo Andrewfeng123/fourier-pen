@@ -1,4 +1,6 @@
 /* Globals */
+#pragma once
+
 #define MAX_X 1
 #define MIN_X -1
 #define MAX_Y 1

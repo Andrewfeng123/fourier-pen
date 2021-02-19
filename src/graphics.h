@@ -14,7 +14,7 @@ extern unsigned int pointVAO;
 extern unsigned int pointVBO; 
 void drawPoint(Coord point);
 
-inline void drawCircle(Coord centre, float radius) {}
+inline void drawCircle(Coord centre, float radius);
 
 extern unsigned int lineVAO;
 extern unsigned int lineVBO;

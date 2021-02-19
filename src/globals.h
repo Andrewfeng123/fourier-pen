@@ -9,5 +9,5 @@
 // a coordinate
 struct Coord
 {
-    float x, y;
+    float x = 0, y = 0;
 };

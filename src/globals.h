@@ -11,3 +11,7 @@ struct Coord
 {
     float x = 0, y = 0;
 };
+
+struct Line {
+    Coord p1, p2;
+};

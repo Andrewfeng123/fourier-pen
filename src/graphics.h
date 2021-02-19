@@ -7,6 +7,15 @@
 #include "globals.h"
 #include <utility>
 
-void drawPoint(Coord point, int thickness = 1);
-void drawCircle(Coord centre, int radius, int thickness = 1);
-void drawLine(Coord start, Coord end, int thickness = 1);
+void initGraphics();
+
+extern unsigned int pointShaderProg;
+extern unsigned int pointVAO;
+extern unsigned int pointVBO; 
+void drawPoint(Coord point);
+
+inline void drawCircle(Coord centre, float radius) {}
+
+extern unsigned int lineVAO;
+extern unsigned int lineVBO;
+void drawLine(Line line);

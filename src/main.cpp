@@ -4,13 +4,7 @@
 #include "imgui_impl_sdl.h"
 #include "imgui_impl_opengl3.h"
 #include "include/glad/glad.h"
-
-#define MAX_X 1
-#define MIN_X 0
-#define MAX_Y 1
-#define MIN_Y 0
-
-bool drawPoints(double x, double y);
+#include "graphics.h"
 
 const int width = 640;
 const int height = 480;
@@ -55,6 +49,7 @@ int main(int argc, char *args[])
 
     // Initialize OpenGL loader
     bool err = gladLoadGL() == 0;
+    initGraphics();
 
     if (err)
     {
@@ -165,6 +160,9 @@ int main(int argc, char *args[])
         glClearColor(clear_color.x, clear_color.y, clear_color.z, clear_color.w);
         glClear(GL_COLOR_BUFFER_BIT);
         ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+
+        drawPoint({0.5,0.5});
+        drawLine({{0.5,0.5}, {0.5,-0.5}});
         SDL_GL_SwapWindow(window);
     }
 

@@ -12,7 +12,7 @@
 std::ostream &operator<<(std::ostream &os, const struct Coord &coord);
 
 /* DTFS examples */
-std::vector<Coord> square = {{.x = 0.5, .y = 0.5}, {.x = 0.5, .y = -0.5}, {.x = -0.5, .y = 0.5}, {.x = -0.5, .y = -0.5}};
+std::vector<Coord> square = {{0.5, 0.5}, {0.5, -0.5}, {-0.5, 0.5}, {-0.5, -0.5}};
 
 Coord_list_t sampleSVG()
 {
@@ -32,8 +32,8 @@ alpha_list_t DTFS(const Coord_list_t &coords, int numCircles)
         return {};
     }
 
-    const int N = coords.size(); // num of points
-    const int K = numCircles;
+    const int N = (int) coords.size(); // num of points
+    const int K = (int) numCircles;
     const float omega = 2 * M_PI / N;
     alpha_list_t alpha(K);
     for (int k = 0; k < K; k++)
@@ -59,7 +59,7 @@ void drawFrame(alpha_list_t alphas, int time)
 }
 
 // Temporary testing method
-int main()
+/*int main()
 {
     auto params = DTFS(square);
     // print coord list
@@ -68,7 +68,7 @@ int main()
         std::cout << e.first << " + i*" << e.second << std::endl;
     }
     return 0;
-}
+}*/
 
 // for debugging
 std::ostream &operator<<(std::ostream &os, const struct Coord &coord)

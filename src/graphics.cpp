@@ -1,6 +1,9 @@
 #include "graphics.h"
-#include "include/glad/glad.h"
+
+#include <cmath>
 #include <iostream>
+
+#include "include/glad/glad.h"
 
 unsigned int pointShaderProg;
 unsigned int pointVAO;
@@ -104,7 +107,8 @@ void drawLine(Line line) {
     glDrawArrays(GL_LINES, 0, 2);
 }
 
-inline void drawCircle(Coord centre, float radius) {
-    centre = {0, 0};
-    radius = 0;
+void drawCircle(Coord centre, float radius) {
+    for (int theta = 0; theta < 360; theta++) {
+        drawPoint({centre.x + radius * cos(theta * M_PI / 180), centre.y + radius * sin(theta * M_PI / 180)});
+    }
 }

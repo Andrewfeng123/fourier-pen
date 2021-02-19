@@ -6,11 +6,10 @@
 #include "include/glad/glad.h"
 #include "graphics.h"
 
-const int width = 640;
-const int height = 480;
+const int width = 900;
+const int height = 900;
 
-int main(int argc, char *args[])
-{
+int main(int argc, char *argv[]) {
     // Setup SDL
     // (Some versions of SDL before <2.0.10 appears to have performance/stalling issues on a minority of Windows systems,
     // depending on whether SDL_INIT_GAMECONTROLLER is enabled or disabled.. updating to latest version of SDL is recommended!)
@@ -42,7 +41,7 @@ int main(int argc, char *args[])
     SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 24);
     SDL_GL_SetAttribute(SDL_GL_STENCIL_SIZE, 8);
     SDL_WindowFlags window_flags = (SDL_WindowFlags)(SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE | SDL_WINDOW_ALLOW_HIGHDPI);
-    SDL_Window *window = SDL_CreateWindow("Dear ImGui SDL2+OpenGL3 example", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1280, 720, window_flags);
+    SDL_Window *window = SDL_CreateWindow("Dear ImGui SDL2+OpenGL3 example", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, window_flags);
     SDL_GLContext gl_context = SDL_GL_CreateContext(window);
     SDL_GL_MakeCurrent(window, gl_context);
     SDL_GL_SetSwapInterval(1); // Enable vsync
@@ -162,7 +161,11 @@ int main(int argc, char *args[])
         ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
         drawPoint({0.5,0.5});
-        drawLine({{0.5,0.5}, {0.5,-0.5}});
+        drawPoint({0.5, -0.5});
+        drawPoint({-0.5, -0.5});
+        drawPoint({-0.5, 0.5});
+        //drawLine({{0.5,0.5}, {0.5,-0.5}});
+        drawCircle({0.0, 0.0}, 0.3);
         SDL_GL_SwapWindow(window);
     }
 

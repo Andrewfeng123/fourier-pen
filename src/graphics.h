@@ -10,6 +10,8 @@
 
 void initGraphics();
 
+extern void setColor(unsigned char r, unsigned char g, unsigned char b);
+
 extern unsigned int pointShaderProg;
 extern unsigned int pointVAO;
 extern unsigned int pointVBO; 

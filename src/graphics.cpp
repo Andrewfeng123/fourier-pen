@@ -53,9 +53,10 @@ const char* pointVShaderSource =
 
 const char* pointFShaderSource = 
 "#version 330 core\n"
+"uniform vec3 color = vec3(1f, 1f, 1f);"
 "out vec4 fragColor;\n"
 "void main() {\n"
-"    fragColor = vec4(1f, 1f, 1f, 1.0f);\n"
+"    fragColor = vec4(color.x, color.y, color.z, 1.0f);\n"
 "}\n";
 
 void initGraphics() {
@@ -130,4 +131,11 @@ void endCurve() {
 inline void drawCircle(Coord centre, float radius) {
     centre = {0, 0};
     radius = 0;
+}
+
+void setColor(unsigned char r, unsigned char g, unsigned char b) {
+    GLint location = glGetUniformLocation(pointShaderProg, "color");
+    if (location != -1) {
+        glUniform3f(location, (float) r/255, (float) g/255, (float) b/255);
+    }
 }

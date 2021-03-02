@@ -162,6 +162,7 @@ int main(int argc, char *args[])
         ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
         beginCurve();
+        setColor(255, 0, 0);
         drawPoint({0.5,0.5});
         drawPoint({0.5,-0.5});
         drawPoint({-0.5,-0.5});

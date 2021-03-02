@@ -4,7 +4,7 @@ cmake_minimum_required(VERSION 3.10)
 project(fourier-pen)
 
 # add the executable
-add_executable(main src/main.cpp src/imgui_impl_opengl3.cpp src/graphics.cpp)
+add_executable(main src/main.cpp src/imgui_impl_opengl3.cpp src/graphics.cpp src/processing.cpp)
 
 # add glad library
 add_library("glad" "src/include/glad/glad.c")

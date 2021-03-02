@@ -7,6 +7,9 @@ unsigned int pointVAO;
 unsigned int pointVBO; 
 unsigned int lineVAO;
 unsigned int lineVBO; 
+std::array<Coord, 5000> pointSamples;
+int numPoints;
+bool curveBegan = false;
 
 unsigned int compileShader(unsigned int type, const char* source) {
     unsigned int shader;
@@ -82,13 +85,19 @@ void initGraphics() {
 
     glGenBuffers(1, &lineVBO);
     glBindBuffer(GL_ARRAY_BUFFER, lineVBO);
-    glBufferData(GL_ARRAY_BUFFER, 50 * sizeof(Line), NULL, GL_DYNAMIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, 2500 * sizeof(Line), NULL, GL_DYNAMIC_DRAW);
 
     glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 0, (void*)NULL);
     glEnableVertexAttribArray(0);
+
+    numPoints = 0;
 }
 
 void drawPoint(Coord point) {
+    if (curveBegan) {
+        pointSamples[numPoints++] = point;
+        return;
+    }
     glBindBuffer(GL_ARRAY_BUFFER, pointVBO);
     glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(Coord), &point);
     glBindVertexArray(pointVAO);
@@ -102,6 +111,20 @@ void drawLine(Line line) {
     glBindVertexArray(lineVAO);
     glUseProgram(pointShaderProg);
     glDrawArrays(GL_LINES, 0, 2);
+}
+
+void beginCurve() {
+    numPoints = 0;
+    curveBegan = true;
+}
+
+void endCurve() {
+    glBindBuffer(GL_ARRAY_BUFFER, lineVBO);
+    glBufferSubData(GL_ARRAY_BUFFER, 0, numPoints* sizeof(Coord), pointSamples.data());
+    glBindVertexArray(lineVAO);
+    glUseProgram(pointShaderProg);
+    glDrawArrays(GL_LINE_STRIP, 0, numPoints);
+    curveBegan = false;
 }
 
 inline void drawCircle(Coord centre, float radius) {

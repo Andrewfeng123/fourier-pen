@@ -161,8 +161,11 @@ int main(int argc, char *args[])
         glClear(GL_COLOR_BUFFER_BIT);
         ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
+        beginCurve();
         drawPoint({0.5,0.5});
-        drawLine({{0.5,0.5}, {0.5,-0.5}});
+        drawPoint({0.5,-0.5});
+        drawPoint({-0.5,-0.5});
+        endCurve();
         SDL_GL_SwapWindow(window);
     }
 

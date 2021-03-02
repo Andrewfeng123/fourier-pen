@@ -7,11 +7,7 @@ file(GLOB cpp_file src/*.cpp)
 file(GLOB h_file src/*.h)
 
 # add the executable
-<<<<<<< HEAD
 add_executable(main src/imgui_impl_opengl3.cpp ${cpp_file} ${f_file})
-=======
-add_executable(main src/main.cpp src/imgui_impl_opengl3.cpp src/graphics.cpp)
->>>>>>> b2074916140623fa23fc27a0c5dccd2211a4c6a9
 
 # add glad library
 add_library("glad" "src/include/glad/glad.c")

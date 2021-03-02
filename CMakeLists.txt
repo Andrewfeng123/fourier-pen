@@ -7,7 +7,11 @@ file(GLOB cpp_file src/*.cpp)
 file(GLOB h_file src/*.h)
 
 # add the executable
+<<<<<<< HEAD
 add_executable(main src/imgui_impl_opengl3.cpp ${cpp_file} ${f_file})
+=======
+add_executable(main src/main.cpp src/imgui_impl_opengl3.cpp src/graphics.cpp)
+>>>>>>> b2074916140623fa23fc27a0c5dccd2211a4c6a9
 
 # add glad library
 add_library("glad" "src/include/glad/glad.c")
@@ -28,3 +32,10 @@ target_link_libraries(main PRIVATE
 # specify the C++ standard
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
+
+if ( CMAKE_COMPILER_IS_GNUCC )
+    set(CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} -Wall -Wextra -pedantic")
+endif()
+if ( MSVC )
+    set(CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} /W4")
+endif()

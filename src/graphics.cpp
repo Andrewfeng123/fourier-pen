@@ -103,3 +103,8 @@ void drawLine(Line line) {
     glUseProgram(pointShaderProg);
     glDrawArrays(GL_LINES, 0, 2);
 }
+
+inline void drawCircle(Coord centre, float radius) {
+    centre = {0, 0};
+    radius = 0;
+}
